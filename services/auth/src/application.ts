@@ -19,6 +19,8 @@ import {
   BearerVerifierConfig,
   BearerVerifierType,
   SECURITY_SCHEME_SPEC,
+  HttpMethod,
+  OASBindings,
 } from '@sourceloop/core';
 import {AuthenticationServiceComponent} from '@sourceloop/authentication-service';
 import {RepositoryMixin} from '@loopback/repository';
@@ -101,6 +103,17 @@ export class AuthApplication extends BootMixin(
     });
 
     this.component(RestExplorerComponent);
+
+    this.bind(OASBindings.HiddenEndpoint).to([
+      {
+        path: '/auth/facebook',
+        httpMethod: HttpMethod.POST,
+      },
+      {
+        path: '/auth/facebook-auth-redirect',
+        httpMethod: HttpMethod.GET,
+      },
+    ]);
 
     this.projectRoot = __dirname;
     // Customize @loopback/boot Booter Conventions here

@@ -448,77 +448,8 @@
         "operationId": "OtpController.createQr"
       }
     },
-    "/auth/facebook": {
-      "post": {
-        "x-controller-name": "FacebookLoginController",
-        "x-operation-name": "postLoginViaFacebook",
-        "tags": [
-          "FacebookLoginController"
-        ],
-        "responses": {
-          "200": {
-            "description": "POST Call for Facebook based login",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/TokenResponse"
-                }
-              }
-            }
-          }
-        },
-        "description": "",
-        "requestBody": {
-          "content": {
-            "application/x-www-form-urlencoded": {
-              "schema": {
-                "$ref": "#/components/schemas/ClientAuthRequest"
-              }
-            }
-          }
-        },
-        "operationId": "FacebookLoginController.postLoginViaFacebook"
-      }
-    },
-    "/auth/facebook-auth-redirect": {
-      "get": {
-        "x-controller-name": "FacebookLoginController",
-        "x-operation-name": "facebookCallback",
-        "tags": [
-          "FacebookLoginController"
-        ],
-        "responses": {
-          "200": {
-            "description": "Facebook Redirect Token Response",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/TokenResponse"
-                }
-              }
-            }
-          }
-        },
-        "description": "",
-        "parameters": [
-          {
-            "name": "code",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "state",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "operationId": "FacebookLoginController.facebookCallback"
-      }
-    },
+    "/auth/facebook": {},
+    "/auth/facebook-auth-redirect": {},
     "/auth/forget-password": {
       "post": {
         "x-controller-name": "ForgetPasswordController",
