@@ -21,6 +21,7 @@ import {
   SECURITY_SCHEME_SPEC,
   HttpMethod,
   OASBindings,
+  OASPathDefinition,
 } from '@sourceloop/core';
 import {AuthenticationServiceComponent} from '@sourceloop/authentication-service';
 import {RepositoryMixin} from '@loopback/repository';
@@ -67,6 +68,13 @@ export class AuthApplication extends BootMixin(
       enableObf,
       obfPath: process.env.OBF_PATH ?? '/obf',
       openapiSpec: openapi,
+      modifyPathDefinition(apiPath: string, pathDefinition: OASPathDefinition) {
+        if (apiPath.startsWith('/auth')) {
+          delete pathDefinition.post;
+          return pathDefinition;
+        }
+        return pathDefinition;
+      },
       authentication: authentication,
       swaggerUsername: process.env.SWAGGER_USER,
       swaggerPassword: process.env.SWAGGER_PASSWORD,
